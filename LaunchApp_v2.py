@@ -1,30 +1,19 @@
-import unittest
+import time
 from appium import webdriver
+from appium.webdriver.common.mobileby import MobileBy
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
-class AppiumTest(unittest.TestCase):
-    dc = {}
-    driver = None
-
-    def setUp(self):
-        self.dc['app'] = "/Users/pthanh2/Documents/AUTOMATION/0_HADO_FOSSIL/0_CODE/pythonThuPhamMobile/app/calculator" \
-                         ".apk"
-        # appPackage and appActivity  desired capability specify app details to Appium
-        self.dc['appPackage'] = "com.nike.plusgps"
-        self.dc['appActivity'] = "com.nike.plusgps.activities.MainActivity"
-        self.dc['platformName'] = "android"
-        self.dc['deviceName'] = "K6F1081454B3395"
-        self.dc['automationName'] = "UiAutomator2"
-        self.driver = webdriver.Remote("http://localhost:4723/wd/hub", self.dc)
-
-    def testAppLaunch(self):
-        el = self.driver.find_element_by_accessibility_id('com.nike.plusgps:id/login_text')
-        el.click()
-        self.driver.implicitly_wait(10)
-
-    def tearDown(self):
-        self.driver.quit()
+def test_launchApp(host="http://localhost:4723/wd/hub", udid="K6F1021084B0061", **kwargs):
+    desired_caps = {'udid': udid, 'platformName': 'android', 'automationName': 'UiAutomator2'}
+    desired_caps.update(kwargs)
+    return webdriver.Remote(host, desired_caps)
 
 
 if __name__ == '__main__':
-    unittest.main()
+    test_launchApp(
+        app="/Users/pthanh2/Documents/AUTOMATION/0_HADO_FOSSIL/0_CODE/pythonThuPhamMobile/app/com.nike.plusgps.apk",
+        appPackage="com.nike.plusgps", appActivity="com.nike.plusgps.activities.MainActivity")
+
+    # launchApp(app="/Users/pthanh2/Documents/AUTOMATION/0_HADO_FOSSIL/0_CODE/pythonThuPhamMobile/app/calculator.apk")
