@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def launchApp(host="http://localhost:4723/wd/hub", udid="K6S4001124B0049", **kwargs):
+def launchApp(host="http://localhost:4723/wd/hub", udid="K6F1021084B0061", **kwargs):
     desired_caps = {}
     desired_caps['udid'] = udid
     desired_caps['platformName'] = 'android'
@@ -29,9 +29,10 @@ def test_start_fossil_phone_app(driver):
 
 
 def test_start_message_app(driver):
-    driver.start_activity("com.google.android.apps.messaging",
-                          "com.google.android.apps.messaging.main.WearMainActivity")
-    assert driver.current_activity in "com.google.android.apps.messaging.main.WearMainActivity"
+    driver.start_activity("com.google.android.apps.wearable.settings",
+                          "com.google.android.clockwork.settings.MainSettingsActivity")
+
+    assert driver.current_activity in "com.google.android.clockwork.settings.MainSettingsActivity"
     # driver.execute_script('mobile: longClickGesture', {'x': 250, 'y': 270, 'duration': 1000})
     # can_swipe = driver.execute_script('mobile: swipeGesture', {
     #     "left", 100, "top", 100, "width", 200, "height", 332,
