@@ -2,10 +2,6 @@ import time
 
 import pytest as pytest
 from appium import webdriver
-from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.mobileby import MobileBy
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 def launchApp(host="http://localhost:4723/wd/hub", udid="K6F1021084B0061", **kwargs):
@@ -28,18 +24,11 @@ def test_start_fossil_phone_app(driver):
     assert driver.current_activity in "com.fossil.phone.dialer.DialerActivity"
 
 
-def test_start_message_app(driver):
+def test_start_setting_app(driver):
+
     driver.start_activity("com.google.android.apps.wearable.settings",
                           "com.google.android.clockwork.settings.MainSettingsActivity")
-
     assert driver.current_activity in "com.google.android.clockwork.settings.MainSettingsActivity"
-    # driver.execute_script('mobile: longClickGesture', {'x': 250, 'y': 270, 'duration': 1000})
-    # can_swipe = driver.execute_script('mobile: swipeGesture', {
-    #     "left", 100, "top", 100, "width", 200, "height", 332,
-    #     "direction", "up",
-    #     "percent", 1
-    # })
-    # driver.find_element(AppiumBy.ID, "com.fossil.phone:id/tv_settings").click()
 
     time.sleep(10)
     driver.quit()
