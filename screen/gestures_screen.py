@@ -10,5 +10,5 @@ class GesturesScreen:
         return touch_to_wake_switch.get_attribute("checked") == 'true'
 
     def is_TouchToWake_ON(driver):
-        touch_to_wake_switch = self.driver.find_element(tilt_to_wake_elem)
+        touch_to_wake_switch = driver.find_element(tilt_to_wake_elem)
         return touch_to_wake_switch.get_attribute("checked") == 'true'

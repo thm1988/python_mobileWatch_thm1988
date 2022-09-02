@@ -4,7 +4,7 @@ import pytest as pytest
 from appium import webdriver
 
 
-def launchApp(host="http://localhost:4723/wd/hub", udid="K6F1021084B0061", **kwargs):
+def launchApp(host="http://localhost:4723/wd/hub", udid="K6S4001124B0049", **kwargs):
     desired_caps = {}
     desired_caps['udid'] = udid
     desired_caps['platformName'] = 'android'
